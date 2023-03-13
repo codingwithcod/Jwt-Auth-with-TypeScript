@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const example_1 = require("../controllers/example");
+const authChecker_1 = require("../midddleware/authChecker");
 const exampleValidation_1 = require("../validation/exampleValidation/exampleValidation");
 const router = express_1.default.Router();
-router.get('/', example_1.getExample);
+router.get('/', authChecker_1.authChecker, example_1.getExample);
 router.post('/post', exampleValidation_1.postExampleDataValidation, example_1.postExampleData);
 exports.default = router;
